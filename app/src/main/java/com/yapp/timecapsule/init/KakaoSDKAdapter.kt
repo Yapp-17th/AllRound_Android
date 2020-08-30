@@ -1,4 +1,4 @@
-package com.yapp.timecapsule.thirdparty
+package com.yapp.timecapsule.init
 
 import com.kakao.auth.*
 import com.yapp.timecapsule.TimeApplication
