@@ -1,4 +1,4 @@
-package com.example.timecapsule
+package com.yapp.timecapsule
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
