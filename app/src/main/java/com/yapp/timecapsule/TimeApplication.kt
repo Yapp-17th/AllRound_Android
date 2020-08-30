@@ -5,6 +5,7 @@ import com.kakao.auth.KakaoSDK
 import com.yapp.timecapsule.init.AppStatus
 import com.yapp.timecapsule.init.KakaoSDKAdapter
 import com.yapp.timecapsule.init.TimeLifeCycleCallback
+import com.yapp.timecapsule.utils.SharedPreferenceHelper
 
 class TimeApplication: Application() {
 
@@ -18,6 +19,8 @@ class TimeApplication: Application() {
         KakaoSDK.init(KakaoSDKAdapter(this@TimeApplication))
 
         registerActivityLifecycleCallbacks(TimeLifeCycleCallback)
+
+        SharedPreferenceHelper.init(this)
     }
 
     fun getAppStatus(): AppStatus = mAppStatus
