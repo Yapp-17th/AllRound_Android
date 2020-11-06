@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -12,7 +13,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,6 +27,20 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    // 이 옵션은 "3rd-party Gradle plug-ins may be the cause" 메시지를 유발함
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/kotlinx-coroutines-core.kotlin_module'
     }
 }
 
@@ -57,4 +72,74 @@ dependencies {
     // push sdk를 사용하기 위해 필요.
     implementation group: 'com.kakao.sdk', name: 'push', version: '1.28.0'
 
+    // android KTX
+    // architecture component navigation    // Navigation KTX
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0-beta01'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0-beta01'
+    // liveData KTX
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    // lifecycle KTX
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+    // viewModel KTX
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+
+    // Support library
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+
+    //rxjava
+    implementation "io.reactivex.rxjava2:rxjava:2.2.12"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation "com.github.tbruyelle:rxpermissions:0.10.2"
+    implementation "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+
+    // retrofit, okhttp
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.okhttp3:okhttp:4.7.2"
+    implementation 'com.squareup.retrofit2:converter-jackson:2.4.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+
+    implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    implementation 'com.jakewharton.rxbinding:rxbinding-design:0.4.0'
+    // these are for retrolambda and streams api
+    implementation 'com.annimon:stream:1.1.2'
+
+    // Koin for Kotlin
+    implementation "org.koin:koin-core:$koin_version"
+    // Koin extended & experimental features
+    implementation "org.koin:koin-core-ext:$koin_version"
+    // Koin for Unit tests
+    testImplementation "org.koin:koin-test:$koin_version"
+
+    // Koin for Android
+    implementation "org.koin:koin-android:$koin_version"
+    // Koin Android Scope features
+    implementation "org.koin:koin-android-scope:$koin_version"
+    // Koin Android ViewModel features
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+    // Koin Android Experimental features
+    implementation "org.koin:koin-android-ext:$koin_version"
+
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    // Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    // Koin AndroidX Fragment features
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+    // Koin AndroidX Experimental features
+    implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    // Koin for Ktor Kotlin
+    implementation "org.koin:koin-ktor:$koin_version"
+
+    // etc
+    implementation "com.google.code.gson:gson:2.8.6"
 }
