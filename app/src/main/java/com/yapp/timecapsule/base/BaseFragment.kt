@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment : Fragment() {
     protected var mContext: Context? = null
 
     open fun checkLandscapeMode() {}
@@ -57,5 +57,32 @@ abstract class BaseFragment: Fragment() {
 
         checkLandscapeMode()
         onConfigurationChanged()
+    }
+
+    /////////// custom method //////////////
+
+    fun alert(
+        title: String? = null,
+        message: String? = null,
+        pText: String? = null,
+        nText: String? = null,
+        pListener: (() -> Unit)? = null,
+        nListener: (() -> Unit)? = null
+    ) {
+        mContext?.let {
+            (mContext as BaseActivity).alert(title, message, pText, nText, pListener, nListener)
+        }
+    }
+
+    fun shortToast(message: String?) {
+        mContext?.let {
+            (mContext as BaseActivity).shortToast(message)
+        }
+    }
+
+    fun longToast(message: String?) {
+        mContext?.let {
+            (mContext as BaseActivity).longToast(message)
+        }
     }
 }
