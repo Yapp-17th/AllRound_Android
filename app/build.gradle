@@ -21,11 +21,13 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "Mode", "\"debug\""
         }
 
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "Mode", "\"release\""
         }
     }
 
@@ -35,8 +37,25 @@ android {
 
     // 이 옵션은 "3rd-party Gradle plug-ins may be the cause" 메시지를 유발함
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility "1.8"
+        targetCompatibility "1.8"
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    dexOptions {
+        jumboMode = true
+        javaMaxHeapSize "4g"
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    kapt {
+        generateStubs = true
     }
 
     packagingOptions {
