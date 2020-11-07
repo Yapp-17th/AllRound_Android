@@ -3,4 +3,24 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    
+    <color name="gray_0">#FFFFFF</color>
+    <color name="gray_1">#F1F3F5</color>
+    <color name="gray_2">#E9ECEF</color>
+    <color name="gray_3">#DEE2E6</color>
+    <color name="gray_4">#CED4DA</color>
+    <color name="gray_5">#ADB5BD</color>
+    <color name="gray_6">#868E96</color>
+    <color name="gray_7">#495057</color>
+    <color name="gray_8">#343A40</color>
+    <color name="gray_9">#212529</color>
+    <color name="error">#FA5252</color>
+    <color name="success">#40C057</color>
+    <color name="caution">#FAB005</color>
+    <color name="hour_red">#F0725B</color>
+    <color name="hour_beige">#F2E9CB</color>
+    <color name="hour_blue">#A8EAEC</color>
+    <color name="hour_black">#202020</color>
+
+    <color name="status_bar_dim">#14212121</color>
 </resources>
