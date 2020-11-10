@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.yapp.timecapsule.R
 
@@ -19,6 +21,8 @@ abstract class BaseActivity : AppCompatActivity() {
         // 가로모드 대응시
     }
 
+    open fun observeViewModel() {}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,6 +33,8 @@ abstract class BaseActivity : AppCompatActivity() {
         dataBindingInit()
 
         onCreate()
+
+        observeViewModel()
     }
 
     private fun settingWindow() {
@@ -112,5 +118,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun longToast(message: String?) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    infix fun <T> LiveData<T>.observe(block: (T) -> Unit) {
+        this.observe(this@BaseActivity, Observer {
+            block(it)
+        })
     }
 }

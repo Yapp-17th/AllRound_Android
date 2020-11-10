@@ -23,4 +23,6 @@
     <color name="hour_black">#202020</color>
 
     <color name="status_bar_dim">#14212121</color>
+    <color name="kakao_button_color">#FEE500</color>
+    <color name="kakao_text_color">#191919</color>
 </resources>

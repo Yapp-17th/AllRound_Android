@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
 abstract class BaseFragment : Fragment() {
     protected var mContext: Context? = null
@@ -84,5 +86,11 @@ abstract class BaseFragment : Fragment() {
         mContext?.let {
             (mContext as BaseActivity).longToast(message)
         }
+    }
+
+    infix fun <T> LiveData<T>.observe(block: (T) -> Unit) {
+        this.observe(viewLifecycleOwner, Observer {
+            block(it)
+        })
     }
 }

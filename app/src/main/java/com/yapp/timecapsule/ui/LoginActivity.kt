@@ -2,9 +2,11 @@ package com.yapp.timecapsule.ui
 
 import android.app.Application
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.yapp.timecapsule.R
 import com.yapp.timecapsule.base.BaseActivity
 import com.yapp.timecapsule.base.BaseViewModel
+import com.yapp.timecapsule.custom.SingleLiveEvent
 import com.yapp.timecapsule.databinding.ActivityLoginBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -21,8 +23,14 @@ class LoginActivity : BaseActivity() {
     override fun onCreate() {
 
     }
+
+    override fun observeViewModel() {
+        mViewModel.kakaoLoginButtonClicked observe {
+            binding.comKakaoLogin.performClick()
+        }
+    }
 }
 
 class LoginViewModel(application: Application): BaseViewModel(application) {
-
+    val kakaoLoginButtonClicked = SingleLiveEvent<Unit>()
 }
